@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hira Motor Driving School</title>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; }
+
+    header {
+      background-color: #004466;
+      color: white;
+      padding: 1em 1.5em;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo-container img {
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      margin-right: 15px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid white;
+    }
+
+    .logo-container img:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8em;
+    }
+
+    nav {
+      margin-top: 0.5em;
+    }
+
+    nav a {
+      margin: 0 0.5em;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      display: inline-block;
+      position: relative;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    nav a:hover {
+      color: #00e6e6;
+      transform: scale(1.1);
+    }
+
+    main { padding: 1.5em; }
+
+    section {
+      display: none;
+      margin-top: 1.5em;
+    }
+
+    section.active {
+      display: block;
+    }
+
+    .text-slider {
+      width: 100%;
+      overflow: hidden;
+      background-color: #004466;
+      color: white;
+      font-weight: bold;
+      white-space: nowrap;
+      padding: 1em 0;
+    }
+
+    .text-slide {
+      display: inline-block;
+      padding-left: 100%;
+      animation: scroll-text 15s linear infinite;
+    }
+
+    @keyframes scroll-text {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .call-now-btn {
+      display: inline-block;
+      background-color: #28a745;
+      color: white;
+      padding: 0.75em 1.2em;
+      text-decoration: none;
+      font-size: 1.1em;
+      border-radius: 6px;
+      margin-top: 1em;
+    }
+
+    .call-now-btn:hover {
+      background-color: #218838;
+    }
+
+    .whatsapp-button {
+      position: fixed;
+      bottom: 80px;
+      right: 20px;
+      background-color: #25D366;
+      color: white;
+      font-size: 2em;
+      padding: 0.4em 0.5em;
+      border-radius: 50%;
+      text-decoration: none;
+      box-shadow: 0 0 8px rgba(0,0,0,0.3);
+      z-index: 1000;
+      transition: transform 0.2s;
+    }
+
+    .whatsapp-button:hover {
+      transform: scale(1.1);
+      background-color: #20c152;
+    }
+
+    #About-Us, #Courses, #Contact-Us {
+      background-color: #f0f8ff;
+      padding: 1.5em;
+      border-radius: 10px;
+      margin-bottom: 2em;
+    }
+
+    #Contact-Us {
+      background-color: #e6f2ff;
+      padding: 2em;
+      border-radius: 12px;
+      animation: slideIn 1s ease-out;
+    }
+
+    .contact-form {
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .contact-form input, .contact-form textarea {
+      width: 100%;
+      margin-bottom: 1em;
+      padding: 0.6em;
+      font-size: 1em;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+
+    .contact-form input:focus, .contact-form textarea:focus {
+      border-color: #004466;
+      box-shadow: 0 0 5px rgba(0, 68, 102, 0.5);
+      outline: none;
+    }
+
+    @keyframes slideIn {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .image-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 0;
+    }
+
+    .image-container img {
+      width: 49%;
+      height: auto;
+    }
+
+    footer {
+      background-color: #004466;
+      color: white;
+      text-align: center;
+      padding: 2em 1em 1em;
+      position: relative;
+    }
+
+    .footer-menu {
+      margin-bottom: 1em;
+    }
+
+    .footer-menu a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+      position: relative;
+      transition: color 0.3s, transform 0.3s;
+    }
+
+    .footer-menu a::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: cyan;
+      transition: width 0.3s ease;
+    }
+
+    .footer-menu a:hover {
+      color: cyan;
+      transform: scale(1.1);
+    }
+
+    .footer-menu a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 600px) {
+      header, main, footer {
+        text-align: center;
+      }
+
+      nav a {
+        display: block;
+        margin: 0.3em 0;
+        font-size: 1em;
+      }
+
+      .image-container {
+        flex-direction: column;
+      }
+
+      .image-container img {
+        width: 100%;
+        margin-bottom: 1em;
+      }
+
+      .logo-container {
+        justify-content: center;
+      }
+
+      .footer-menu a {
+        display: block;
+        margin: 0.5em 0;
+      }
+    }
+      .social-icons {
+  margin: 1em 0;
+}
+
+.social-icons a {
+  color: white;
+  margin: 0 10px;
+  font-size: 1.6em;
+  display: inline-block;
+  transition: transform 0.3s, color 0.3s;
+}
+
+.social-icons a:hover {
+  transform: scale(1.2);
+  color: cyan;
+}
+
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo-container">
+      <img src="image1.png.jpeg" alt="Logo">
+      <h1>Hira Motor Driving School</h1>
+    </div>
+
+    <nav>
+      <a href="#" onclick="showSection('Home')">Home</a>
+      <a href="#" onclick="showSection('About-Us')">About Us</a>
+      <a href="#" onclick="showSection('Courses')">Courses</a>
+      <a href="#" onclick="showSection('Contact-Us')">Contact Us</a>
+    </nav>
+
+      <div class="social-icons">
+  <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://wa.me/917289978718" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+</div>
+
+
+  </header>
+
+
+  <div class="image-container">
+    <img src="image2.png.jpeg" alt="Driving Scene">
+    <img src="image3.png.jpeg" alt="Driving Scene">
+  </div>
+
+  <main>
+    <section id="Home" class="active">
+      <div class="text-slider">
+        <div class="text-slide">
+          Welcome to Hira Motor Driving School — Learn to drive with confidence &nbsp;&nbsp;&nbsp;
+          Call Now: +91 7289978718! &nbsp;&nbsp;&nbsp;
+        </div>
+      </div>
+
+      <h2>Your Road to Freedom Starts Here</h2>
+      <p>Learn to drive with confidence at Hira Motor Driving School.</p>
+      <a href="tel:+917289978718" class="call-now-btn">📞 Call Now</a>
+
+      <div style="margin-top: 1.5em;">
+        <iframe width="100%" height="315"
+          src="https://www.youtube.com/embed/gonHsZyz6zg"
+          title="YouTube video"
+          frameborder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowfullscreen>
+        
+
+          <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DH6HLUSyOo8/?igsh=MW50ejU2aDhiZW90" data-instgrm-version="14" style="width:100%; max-width:540px; margin:auto;"></blockquote>
+
+<script async src="//www.instagram.com/embed.js"></script>
+
+
+        </iframe>
+      </div>
+    </section>
+
+    <section id="About-Us">
+      <h2>About Hira Motor Driving School</h2>
+      <ul>
+        <li>✅ <strong>10+ Years of Experience:</strong> Successfully trained 1000+ safe and confident drivers.</li>
+        <li>✅ <strong>Certified Instructors:</strong> All our trainers are RTO-approved and professionally experienced.</li>
+        <li>✅ <strong>Training for Everyone:</strong> Special batches for both men and women, with flexible timing.</li>
+        <li>✅ <strong>Complete RTO Support:</strong> Get full assistance for Learning License, Permanent License & Vehicle Registration.</li>
+      </ul>
+    </section>
+
+    <section id="Courses">
+      <h2>Our Driving Courses</h2>
+      <ul>
+        <li>🚗 Beginner Level --> 15 Days for 30 Min Per Day</li>
+        <li>🏍️ Intermediate Level --> 10 Days for 1 Hour Per Day</li>
+        <li>🛣️ Advanced Level --> 10 Days for 1 Hour Per Day</li>
+      </ul>
+      <h1>We also provide personal car training</h1>
+    </section>
+
+    <section id="Contact-Us">
+      <h2>Contact Us</h2>
+      <form onsubmit="submitForm(event)" class="contact-form">
+        <input type="text" name="name" placeholder="Your Name" required />
+        <input type="tel" name="phone" placeholder="Mobile Number" required />
+        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="call-now-btn">Send Message</button>
+        <p id="responseMessage" style="margin-top:1em; font-weight:bold;"></p>
+      </form>
+    </section>
+
+    <h3>Our Location:</h3>
+    <div style="margin-top: 1em;">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3721.5161735848166!2d79.0605671!3d21.130456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bd4c0baf91aef9b%3A0x4eb54aeb3c7bfa94!2sNagpur!5e0!3m2!1sen!2sin!4v1681234567890"
+        width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+  </main>
+
+  <a href="https://wa.me/917289978718" target="_blank" class="whatsapp-button" title="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+  </a>
+
+ 
+  <footer>
+    <div class="social-icons">
+  <a href="https://facebook.com" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://wa.me/917289978718" target="_blank" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <a href="https://youtube.com" target="_blank" title="YouTube"><i class="fab fa-youtube"></i></a>
+</div>
+
+    <div class="footer-menu">
+      <a href="#" onclick="showSection('Home')">Home</a>
+      <a href="#" onclick="showSection('About-Us')">About</a>
+      <a href="#" onclick="showSection('Courses')">Courses</a>
+      <a href="#" onclick="showSection('Contact-Us')">Contact</a>
+    </div>
+
+    <div>&copy; 2025 Hira Motor Driving School</div>
+  </footer>
+
+  <script>
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('main section');
+      sections.forEach(sec => sec.classList.remove('active'));
+      document.getElementById(sectionId).classList.add('active');
+    }
+
+    function submitForm(event) {
+      event.preventDefault();
+      const name = event.target.name.value;
+      document.getElementById("responseMessage").innerText = `Thank you, ${name}. We have received your message.`;
+      event.target.reset();
+    }
+  </script>
+</body>
+</html>
